@@ -24,7 +24,7 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -49,15 +49,27 @@
             font-size: 0.8rem;
             font-weight: 600;
         }
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
         .btn {
+            flex: 1;
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 0.6rem 1rem;
+            padding: 0.6rem 0.5rem;
             border-radius: 6px;
             text-decoration: none;
             text-align: center;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
         }
         .btn:hover { opacity: 0.9; }
     </style>
@@ -65,7 +77,7 @@
 <body>
 
     <header class="header">
-        <h1>Portafolio de Proyectos Técnicos</h1>
+        <h1>🚀 Portafolio de Proyectos Técnicos</h1>
         <p>Sistemas de Información, Desarrollo de Software e Infraestructura de Redes</p>
     </header>
 
@@ -78,10 +90,12 @@
                 <div class="tags">
                     <span class="tag">Análisis</span>
                     <span class="tag">SQL</span>
-                    <span class="tag">Datos</span>
                 </div>
             </div>
-            <a href="./01-Analisis-Datos/" class="btn">Ver Proyecto</a>
+            <div class="actions">
+                <a href="./01-Analisis-Datos/" class="btn btn-outline">📄 Detalle</a>
+                <a href="https://github.com/DanielaSL06/Proyectos/tree/main/01-Analisis-Datos" target="_blank" class="btn">💻 Archivos</a>
+            </div>
         </div>
 
         <!-- Proyecto 02 -->
@@ -92,10 +106,12 @@
                 <div class="tags">
                     <span class="tag">Backend</span>
                     <span class="tag">API REST</span>
-                    <span class="tag">CRUD</span>
                 </div>
             </div>
-            <a href="./02-API-Gestion-Tareas/" class="btn">Ver Proyecto</a>
+            <div class="actions">
+                <a href="./02-API-Gestion-Tareas/" class="btn btn-outline">📄 Detalle</a>
+                <a href="https://github.com/DanielaSL06/Proyectos/tree/main/02-API-Gestion-Tareas" target="_blank" class="btn">💻 Archivos</a>
+            </div>
         </div>
 
         <!-- Proyecto 03 -->
@@ -106,10 +122,12 @@
                 <div class="tags">
                     <span class="tag">IoT</span>
                     <span class="tag">Sensores</span>
-                    <span class="tag">Sistemas Embebidos</span>
                 </div>
             </div>
-            <a href="./03-Sensores-IoT/" class="btn">Ver Proyecto</a>
+            <div class="actions">
+                <a href="./03-Sensores-IoT/" class="btn btn-outline">📄 Detalle</a>
+                <a href="https://github.com/DanielaSL06/Proyectos/tree/main/03-Sensores-IoT" target="_blank" class="btn">💻 Archivos</a>
+            </div>
         </div>
 
         <!-- Proyecto 04 -->
@@ -123,21 +141,26 @@
                     <span class="tag">SQL Server</span>
                 </div>
             </div>
-            <a href="./04-Procesamiento-Asincrono/" class="btn">Ver Proyecto</a>
+            <div class="actions">
+                <a href="./04-Procesamiento-Asincrono/" class="btn btn-outline">📄 Detalle</a>
+                <a href="https://github.com/DanielaSL06/Proyectos/tree/main/04-Procesamiento-Asincrono" target="_blank" class="btn">💻 Código C#</a>
+            </div>
         </div>
 
         <!-- Proyecto 05 -->
         <div class="card">
             <div>
                 <h3>05. Redes Cisco (WLAN & WLC)</h3>
-                <p>Diseño e implementación de infraestructura inalámbrica residencial y empresarial centralizada con WLC, RADIUS 802.1X y VLANs.</p>
+                <p>Diseño e implementación de infraestructura inalámbrica empresarial centralizada con WLC, RADIUS 802.1X y VLANs.</p>
                 <div class="tags">
                     <span class="tag">Packet Tracer</span>
                     <span class="tag">WLC</span>
-                    <span class="tag">802.1X</span>
                 </div>
             </div>
-            <a href="./05-Redes-Cisco/" class="btn">Ver Proyecto</a>
+            <div class="actions">
+                <a href="./05-Redes-Cisco/" class="btn btn-outline">📄 Detalle</a>
+                <a href="https://github.com/DanielaSL06/Proyectos/tree/main/05-Redes-Cisco" target="_blank" class="btn">💻 Archivo .PKT</a>
+            </div>
         </div>
 
         <!-- Proyecto 06 -->
@@ -148,10 +171,12 @@
                 <div class="tags">
                     <span class="tag">Linux</span>
                     <span class="tag">MySQL 8.0</span>
-                    <span class="tag">Bash</span>
                 </div>
             </div>
-            <a href="./06-Ubuntu-Server/" class="btn">Ver Proyecto</a>
+            <div class="actions">
+                <a href="./06-Ubuntu-Server/" class="btn btn-outline">📄 Detalle</a>
+                <a href="https://github.com/DanielaSL06/Proyectos/tree/main/06-Ubuntu-Server" target="_blank" class="btn">💻 Scripts/Archivos</a>
+            </div>
         </div>
     </main>
 
