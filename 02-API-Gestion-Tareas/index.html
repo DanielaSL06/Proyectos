@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Interfaz con HTML-->
+    <title>Gestión de Proyectos</title>
+    
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 700px; margin: auto; }
+        .proyecto, .tarea { border: 1px solid #ccc; padding: 15px; margin-top: 10px; border-radius: 5px; background-color: #f9f9f9; }
+        .proyecto-buscado { border-color: #007bff; background-color: #e9f5ff; }
+        .tarea { border-left: 5px solid #28a745; margin-left: 20px; background-color: #fff; } /* Estilo diferente para tareas */
+        input, button, select { padding: 8px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { opacity: 0.9; }
+        button.delete { background-color: #dc3545; width: auto; margin-right: 5px;}
+        button.edit { background-color: #ffc107; color: black; width: auto; margin-right: 5px; }
+        button.search { background-color: #007bff; }
+        hr { border: 2px solid #eee; margin: 30px 0; }
+        h3 { color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>Mis Proyectos</h2>
+
+    <!-- Formulario visual para POST -->
+    <div>
+        <input type="text" id="nombre" placeholder="Nombre del proyecto (Requerido)">
+        <input type="text" id="descripcion" placeholder="Descripción">
+        <button onclick="crearProyecto()">Agregar Proyecto</button>
+    </div>
+
+    <!-- Se crea la sección para GET por ID (consultar un dato) -->
+    <div>
+        <h3>Buscar Proyecto por ID</h3>
+        <input type="number" id="buscar-id" placeholder="Ingresa el ID (ej. 1)">
+        <button class="search" onclick="buscarProyectoUnico()">Buscar Proyecto</button>
+        <!-- Aparece el resultado de la búsqueda -->
+        <div id="resultado-busqueda"></div> 
+    </div>    
+
+    <hr>
+
+    <!-- Se crea la sección para GET general (consultar todos los datos) -->
+    <h3>Todos los Proyectos</h3>
+    <div id="lista-proyectos"></div>
+
+    <hr>
+    <h2>Gestión de Tareas</h2>
+    
+    <div>
+        <p><small>Asigna una tarea indicando el ID del proyecto:</small></p>
+        <input type="number" id="t-proyecto-id" placeholder="ID del Proyecto (ej. 1)">
+        <input type="text" id="t-titulo" placeholder="Título de la tarea">
+        <select id="t-estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="En progreso">En progreso</option>
+            <option value="Completada">Completada</option>
+        </select>
+        <button onclick="crearTarea()">Asignar Tarea</button>
+    </div>
+
+    <h3>Lista Global de Tareas</h3>
+    <div id="lista-tareas"></div>
+
+    <script>
+        // Se crea la ruta base de la API
+        const API_URL = '/proyectos';
+
+        // Consultar con READ (hace petición GET con fetch)
+        async function cargarProyectos() {
+            const respuesta = await fetch(API_URL);
+            const proyectos = await respuesta.json();
+            
+            const contenedor = document.getElementById('lista-proyectos');
+            contenedor.innerHTML = ''; // Se limpia la pantalla antes de dibujar los nuevos
+            
+            // Se recorre el JSON que devolvió Flask y se arma el HTML
+            proyectos.forEach(p => {
+                contenedor.innerHTML += `
+                    <div class="proyecto">
+                        <strong>ID: ${p.id} - ${p.nombre}</strong> <br>
+                        <small>${p.descripcion}</small> <br><br>
+                        <!-- Se agregan los botones que llaman a las otras funciones del CRUD -->
+                        <button class="edit" onclick="actualizarProyecto(${p.id}, '${p.nombre}', '${p.descripcion}')">Editar</button>
+                        <button class="delete" onclick="eliminarProyecto(${p.id})">Eliminar</button>
+                    </div>
+                `;
+            });
+        }
+
+    // Consultar solo uno por ID
+        async function buscarProyectoUnico() {
+            const id = document.getElementById('buscar-id').value;
+            const contenedor = document.getElementById('resultado-busqueda');
+            
+            if (!id) {
+                contenedor.innerHTML = '<p style="color: red;">Por favor ingresa un ID.</p>';
+                return;
+            }
+
+            const respuesta = await fetch(`${API_URL}/${id}`);
+            const data = await respuesta.json();
+
+            if (respuesta.ok) {
+                // Si lo encuentra, lo dibuja en azul para que resalte
+                contenedor.innerHTML = `
+                    <div class="proyecto proyecto-buscado">
+                        <strong>ID: ${data.id} - ${data.nombre}</strong> <br>
+                        <small>${data.descripcion}</small> <br><br>
+                        <button class="edit" onclick="actualizarProyecto(${data.id}, '${data.nombre}', '${data.descripcion}')">Editar</button>
+                        <button class="delete" onclick="eliminarProyecto(${data.id})">Eliminar</button>
+                    </div>
+                `;
+            } else {
+                // Si no lo encuentra, avisa del error
+                contenedor.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+            }
+        }
+
+        // Crear con CREATE (hace petición POST con fetch)
+        async function crearProyecto() {
+            const nombre = document.getElementById('nombre').value;
+            const descripcion = document.getElementById('descripcion').value;
+
+            // Se envían los datos en formato JSON a la API
+            const respuesta = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nombre: nombre, descripcion: descripcion })
+            });
+
+            const data = await respuesta.json();
+            if (respuesta.ok) {
+                // Si el POST fue exitoso, se limpian los inputs y la lista se recarga
+                document.getElementById('nombre').value = '';
+                document.getElementById('descripcion').value = '';
+                cargarProyectos();
+            } else {
+                alert("Error al crear: " + data.error);
+            }
+        }
+
+        // Actualizar con UPDATE (hace petición PUT con fetch)
+        async function actualizarProyecto(id, nombreActual, descActual) {
+            // Se usan prompts nativos del navegador para mantener la interfaz simple
+            const nuevoNombre = prompt("Edita el nombre del proyecto:", nombreActual);
+            const nuevaDesc = prompt("Edita la descripción:", descActual);
+
+            // Se valida que el usuario no haya cancelado y que haya puesto un nombre
+            if (nuevoNombre !== null && nuevoNombre.trim() !== "") {
+                const respuesta = await fetch(`${API_URL}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nombre: nuevoNombre, descripcion: nuevaDesc })
+                });
+
+                if (respuesta.ok) {
+                    cargarProyectos(); // Se recarga para ver los cambios reflejados
+                    document.getElementById('resultado-busqueda').innerHTML = ''; // Se limpia la búsqueda por si acaso
+		} else {
+                    alert("Error al actualizar el proyecto");
+                }
+            }
+        }
+
+        // Eliminar con DELETE (hace petición DELETE con fetch)
+        async function eliminarProyecto(id) {
+            // Se pide confirmación antes de un DELETE
+            if (confirm("¿Estás seguro de que quieres eliminar este proyecto?")) {
+                await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                cargarProyectos(); // Se recarga la lista para que desaparezca el eliminado
+                document.getElementById('resultado-busqueda').innerHTML = ''; // Se limpia la búsqueda
+	    }
+        }
+
+        // Al abrir la página web, se llama la función de leer datos para que la lista aparezca cargada
+        cargarProyectos();
+
+        // --- LÓGICA PARA TAREAS (ENTIDAD 2) ---
+        const TAREAS_URL = '/tareas';
+
+        async function cargarTareas() {
+            const respuesta = await fetch(TAREAS_URL);
+            const tareas = await respuesta.json();
+            const contenedor = document.getElementById('lista-tareas');
+            contenedor.innerHTML = ''; 
+
+            tareas.forEach(t => {
+                contenedor.innerHTML += `
+                    <div class="tarea">
+                        <strong>${t.titulo}</strong> (Proyecto ID: ${t.proyecto_id})<br>
+                        <span>Estado: <em>${t.estado}</em></span><br><br>
+                        <button class="edit" onclick="actualizarTarea(${t.id}, '${t.titulo}')">Cambiar Estado</button>
+                        <button class="delete" onclick="eliminarTarea(${t.id})">Eliminar</button>
+                    </div>
+                `;
+            });
+        }
+
+        async function crearTarea() {
+            const proyectoId = document.getElementById('t-proyecto-id').value;
+            const titulo = document.getElementById('t-titulo').value;
+            const estado = document.getElementById('t-estado').value;
+
+            if (!proyectoId || !titulo) {
+                alert("Falta ID de proyecto o título");
+                return;
+            }
+
+            const respuesta = await fetch(TAREAS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ proyecto_id: proyectoId, titulo: titulo, estado: estado })
+            });
+
+            if (respuesta.ok) {
+                document.getElementById('t-titulo').value = '';
+                cargarTareas();
+            } else {
+                const err = await respuesta.json();
+                alert("Error: " + err.error);
+            }
+        }
+
+        async function actualizarTarea(id, tituloActual) {
+            const nuevoEstado = prompt("Nuevo estado (Pendiente, En progreso, Completada):");
+            if (nuevoEstado) {
+                await fetch(`${TAREAS_URL}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ titulo: tituloActual, estado: nuevoEstado })
+                });
+                cargarTareas();
+            }
+        }
+
+        async function eliminarTarea(id) {
+            if (confirm("¿Eliminar tarea?")) {
+                await fetch(`${TAREAS_URL}/${id}`, { method: 'DELETE' });
+                cargarTareas();
+            }
+        }
+
+        // Modifica el final de tu script para que cargue ambas al inicio
+        cargarProyectos();
+        cargarTareas();
+    </script>
+</body>
+</html>
