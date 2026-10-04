@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Proyectos | Sistemas y Redes</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card h3 { margin-top: 0; color: var(--primary); }
+        .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+        .tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 500;
+        }
+        .btn:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Portafolio de Proyectos Técnicos</h1>
+        <p>Sistemas de Información, Desarrollo de Software e Infraestructura de Redes</p>
+    </header>
+
+    <main class="grid">
+        <!-- Proyecto 01 -->
+        <div class="card">
+            <div>
+                <h3>01. Análisis de Datos</h3>
+                <p>Procesamiento, modelado y exploración de conjuntos de datos para la toma de decisiones estratégicas.</p>
+                <div class="tags">
+                    <span class="tag">Análisis</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Datos</span>
+                </div>
+            </div>
+            <a href="./01-Analisis-Datos/" class="btn">Ver Proyecto</a>
+        </div>
+
+        <!-- Proyecto 02 -->
+        <div class="card">
+            <div>
+                <h3>02. API Gestión de Tareas</h3>
+                <p>Desarrollo de servicio RESTful para la creación, organización y seguimiento de flujos de trabajo.</p>
+                <div class="tags">
+                    <span class="tag">Backend</span>
+                    <span class="tag">API REST</span>
+                    <span class="tag">CRUD</span>
+                </div>
+            </div>
+            <a href="./02-API-Gestion-Tareas/" class="btn">Ver Proyecto</a>
+        </div>
+
+        <!-- Proyecto 03 -->
+        <div class="card">
+            <div>
+                <h3>03. Sensores IoT</h3>
+                <p>Integración de dispositivos y captura de datos en tiempo real mediante arquitectura Internet de las Cosas.</p>
+                <div class="tags">
+                    <span class="tag">IoT</span>
+                    <span class="tag">Sensores</span>
+                    <span class="tag">Sistemas Embebidos</span>
+                </div>
+            </div>
+            <a href="./03-Sensores-IoT/" class="btn">Ver Proyecto</a>
+        </div>
+
+        <!-- Proyecto 04 -->
+        <div class="card">
+            <div>
+                <h3>04. Procesamiento Asíncrono</h3>
+                <p>Programación concurrente multihilo con gestión e integración de persistencia en base de datos relacional SQL Server.</p>
+                <div class="tags">
+                    <span class="tag">C#</span>
+                    <span class="tag">.NET</span>
+                    <span class="tag">SQL Server</span>
+                </div>
+            </div>
+            <a href="./04-Procesamiento-Asincrono/" class="btn">Ver Proyecto</a>
+        </div>
+
+        <!-- Proyecto 05 -->
+        <div class="card">
+            <div>
+                <h3>05. Redes Cisco (WLAN & WLC)</h3>
+                <p>Diseño e implementación de infraestructura inalámbrica residencial y empresarial centralizada con WLC, RADIUS 802.1X y VLANs.</p>
+                <div class="tags">
+                    <span class="tag">Packet Tracer</span>
+                    <span class="tag">WLC</span>
+                    <span class="tag">802.1X</span>
+                </div>
+            </div>
+            <a href="./05-Redes-Cisco/" class="btn">Ver Proyecto</a>
+        </div>
+
+        <!-- Proyecto 06 -->
+        <div class="card">
+            <div>
+                <h3>06. Ubuntu Server & MySQL</h3>
+                <p>Instalación, endurecimiento de seguridad (hardening) y administración de MySQL Server 8.0 en Linux Ubuntu Server.</p>
+                <div class="tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">MySQL 8.0</span>
+                    <span class="tag">Bash</span>
+                </div>
+            </div>
+            <a href="./06-Ubuntu-Server/" class="btn">Ver Proyecto</a>
+        </div>
+    </main>
+
+</body>
+</html>
