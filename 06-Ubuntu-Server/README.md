@@ -27,6 +27,22 @@ El desarrollo abarca los siguientes componentes clave:
 
 ---
 
+## Imágenes
+
+**Instalación de MySQL Server con APT**
+<img src="images/01-instalacion-mysql.png" width="720" alt="Instalación de MySQL Server" />
+
+**Configuración de seguridad con `mysql_secure_installation`**
+<img src="images/02-secure-installation.png" width="720" alt="mysql_secure_installation" />
+
+**Estructura de la base de datos (CREATE TABLE / DESCRIBE)**
+<img src="images/03-estructura-tabla.png" width="720" alt="Estructura de la tabla" />
+
+**Consultas DML (INSERT / SELECT / UPDATE)**
+<img src="images/04-consultas-sql.png" width="720" alt="Consultas SQL" />
+
+---
+
 ## Instrucciones de Ejecución
 
 1. Iniciar la máquina virtual con **Ubuntu Server** en **VirtualBox** e ingresar a la terminal del sistema con un usuario que posea privilegios `sudo`[cite: 13, 15].

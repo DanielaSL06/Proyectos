@@ -29,6 +29,22 @@ El desarrollo se divide en dos módulos principales:
 
 ---
 
+## Imágenes
+
+**Distribución de las variables (histogramas y diagramas de dispersión)**
+<img src="images/01-distribuciones.png" width="720" alt="Distribución de las variables" />
+
+**Prueba de hipótesis: campana de Gauss (Z crítico = ±1.96, Z calculado = 17.744)**
+<img src="images/02-campana-gauss.png" width="720" alt="Campana de Gauss" />
+
+**Mapa de calor de correlación de Pearson**
+<img src="images/03-mapa-calor.png" width="720" alt="Mapa de calor de correlación" />
+
+**Modelo de regresión lineal: materias con IA frente al promedio**
+<img src="images/04-regresion-lineal.png" width="720" alt="Regresión lineal" />
+
+---
+
 ## Instrucciones de Ejecución
 1. Asegurarse de tener Python 3.x instalado.
 2. Instalar las dependencias necesarias:

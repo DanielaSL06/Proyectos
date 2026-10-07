@@ -26,6 +26,19 @@ El desarrollo abarca los siguientes componentes clave:
 
 ---
 
+## Imágenes
+
+**Topología inalámbrica simulada en Cisco Packet Tracer**
+<img src="images/01-topologia.png" width="720" alt="Topología en Packet Tracer" />
+
+**Verificación de conectividad (ping) desde un cliente inalámbrico**
+<img src="images/02-ping-cliente.png" width="720" alt="Ping desde cliente inalámbrico" />
+
+**Direccionamiento IP obtenido por DHCP (`ipconfig`)**
+<img src="images/03-ipconfig.png" width="720" alt="Direccionamiento IP por DHCP" />
+
+---
+
 ## Instrucciones de Ejecución
 
 1. Abrir la topología de red **`Practica5-6_WLAN.pkt`** en **Cisco Packet Tracer** (versión 8.0 o superior).

@@ -34,6 +34,16 @@ El desarrollo abarca tres componentes fundamentales:
 
 ---
 
+## Imágenes
+
+**Interfaz web: gestión de proyectos (CRUD completo)**
+<img src="images/01-interfaz-proyectos.png" width="720" alt="Interfaz de proyectos" />
+
+**Interfaz web: gestión de tareas**
+<img src="images/02-interfaz-tareas.png" width="720" alt="Interfaz de tareas" />
+
+---
+
 ## Instrucciones de Ejecución
 
 1. Asegurarse de tener Python 3.x instalado.

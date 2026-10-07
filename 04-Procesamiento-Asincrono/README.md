@@ -25,6 +25,19 @@ El desarrollo abarca los siguientes componentes clave:
 
 ---
 
+## Imágenes
+
+**Guardado asíncrono en SQL Server (`async/await` + ADO.NET con transacciones)**
+<img src="images/01-codigo-async-sql.png" width="720" alt="Código asíncrono con SQL Server" />
+
+**Escaneo de interfaces de red**
+<img src="images/02-codigo-escaneo.png" width="720" alt="Escaneo de interfaces de red" />
+
+**Carga asíncrona del historial en la interfaz**
+<img src="images/03-codigo-historial.png" width="720" alt="Carga asíncrona del historial" />
+
+---
+
 ## Instrucciones de Ejecución
 
 1. Abrir la solución **`ProyectoDesa3.sln`** en **Microsoft Visual Studio**.

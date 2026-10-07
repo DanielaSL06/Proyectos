@@ -30,6 +30,13 @@ Este proyecto simula la arquitectura de recolección, ingesta y procesamiento co
 
 ---
 
+## Imágenes
+
+**Servidor Flask y simulador en ejecución (ingesta de telemetría y persistencia JSON/CSV)**
+<img src="images/01-consola-servidor.png" width="720" alt="Consola del servidor y simulador" />
+
+---
+
 ## Instrucciones de Ejecución
 
 1. Asegurarse de tener Python 3.x instalado.
